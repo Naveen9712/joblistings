@@ -11,15 +11,13 @@ const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: [
-        'http://localhost:5173', 
-        'http://localhost:3000',
-        process.env.FRONTEND_URL || 'https://symantrix365.onrender.com'
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
+  origin: [
+    'https://symantrix365.onrender.com',
+    'http://localhost:3000', // for local development
+    'http://localhost:5173'  // for Vite dev server
+  ],
+  credentials: true
+}));
 
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || '';
